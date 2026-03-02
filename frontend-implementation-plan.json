@@ -1,0 +1,100 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Add advanced chemistry content with synthesis, more reactions, and safety filters",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Expand the reaction library to include at least 40 distinct reactions covering synthesis, decomposition, organic chemistry, and multiple reaction types with balanced equations and visual effects",
+      "acceptanceCriteria": [
+        "At least 40 distinct reactions are available in the library",
+        "Synthesis/combination reactions are included as a category",
+        "Multiple reaction types (acid-base, redox, combustion, organic, etc.) are represented",
+        "Each reaction displays a balanced equation, type badge, description, reactants, and products",
+        "Reactions are browsable and searchable in the Reaction Library page"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/lib/reactions.ts",
+          "operation": "modify",
+          "description": "Expand LOCAL_REACTIONS to include at least 40 distinct chemical reactions. Add new reaction types including synthesis/combination, decomposition, single replacement, double replacement, and organic reactions. Ensure each reaction entry has reactants array, products array, balanced equation string, reactionType (e.g., 'synthesis', 'decomposition', 'organic', 'combustion', 'acid-base', 'redox', 'precipitation', 'single-replacement', 'double-replacement'), description string, and visualEffect string. Cover legitimate chemistry reactions such as photosynthesis simulation, esterification, saponification, fermentation, polymerization, and common organic synthesis pathways using safe compounds."
+        },
+        {
+          "path": "frontend/src/pages/ReactionLibrary.tsx",
+          "operation": "modify",
+          "description": "Update the filter controls to support the expanded set of reaction types including 'synthesis', 'decomposition', 'single-replacement', 'double-replacement', and 'organic'. Ensure the search and filter UI can handle the larger reaction set (40+ reactions) with appropriate layout and performance. Verify that all new reaction types display correctly in the type filter dropdown and that reactions are properly filtered when a type is selected."
+        },
+        {
+          "path": "frontend/src/components/ReactionCard.tsx",
+          "operation": "modify",
+          "description": "Add color coding and badge styling for the new reaction types (synthesis, decomposition, single-replacement, double-replacement, organic) so they are visually distinct from existing types. Ensure the type badge displays the correct label and color for each new reaction type. Update any type-specific icon logic if needed."
+        },
+        {
+          "path": "frontend/src/components/EducationalPanel.tsx",
+          "operation": "modify",
+          "description": "Ensure the educational panel correctly displays reaction information for all new reaction types. Verify that the type badge, equation formatting, and description rendering work seamlessly for synthesis, decomposition, organic, and other newly added reaction categories. No structural changes required if the component already uses dynamic type rendering."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Add a safety filter layer that blocks any reaction query or simulation involving explosive compounds, chemical weapons, nerve agents, or weapons of mass destruction, displaying a clear refusal message when blocked content is detected",
+      "acceptanceCriteria": [
+        "A blocklist of harmful/illegal chemical names and categories is defined and enforced",
+        "Searching for blocked substances in the Reaction Library returns no results and shows a safety warning message",
+        "Simulating a combination of reagents that would produce a blocked substance returns no reaction result and shows a safety warning",
+        "The safety warning message is clear and informative (e.g., 'This content is restricted for safety reasons')",
+        "Legitimate chemistry content is unaffected by the filter"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/lib/safetyFilter.ts",
+          "operation": "create",
+          "description": "Create a safety filter module that defines a comprehensive blocklist of harmful chemical names, categories, and keywords related to explosive compounds (TATP, RDX, nitroglycerin, TNT, etc.), chemical weapons (nerve agents, mustard gas, sarin, VX, etc.), weaponized toxic gases, and substances classified as weapons of mass destruction. Export a function isContentBlocked(text: string): boolean that checks whether a given query string or chemical name matches any blocked term (case-insensitive, partial match). Export a constant SAFETY_WARNING_MESSAGE with the refusal text to display when content is blocked."
+        },
+        {
+          "path": "frontend/src/pages/ReactionLibrary.tsx",
+          "operation": "modify",
+          "description": "Import isContentBlocked and SAFETY_WARNING_MESSAGE from the safetyFilter module. Before displaying search results, check if the search term triggers the safety filter using isContentBlocked(searchTerm). If blocked, clear the results and display the SAFETY_WARNING_MESSAGE in a prominent alert or banner UI element above the reaction grid. Ensure the warning is dismissible or clears when the user modifies the search query. Legitimate search terms should display normal results without interference."
+        },
+        {
+          "path": "frontend/src/pages/ExperimentSimulator.tsx",
+          "operation": "modify",
+          "description": "Import isContentBlocked and SAFETY_WARNING_MESSAGE from the safetyFilter module. After the user selects two reagents and clicks 'Mix Chemicals', check if either selected reagent name or the resulting reaction products/equation contain blocked content by calling isContentBlocked on the relevant strings. If blocked content is detected, do not display the reaction result or animation. Instead, show the SAFETY_WARNING_MESSAGE in a visible alert or modal dialog. Ensure the warning is clear and prevents any visual effect or educational panel from rendering for the blocked reaction. Allow normal reactions to proceed without the filter intervening."
+        },
+        {
+          "path": "frontend/src/hooks/useQueries.ts",
+          "operation": "modify",
+          "description": "Import isContentBlocked from the safetyFilter module. In the useReactionByName hook, after fetching the reaction from the backend, check if the backend returned a contentBlocked error. If so, surface the backend's safety message to the caller. Additionally, apply the client-side safety filter by checking isContentBlocked on the reaction name or equation before returning the reaction data. If blocked client-side, return a safety warning state instead of the reaction data. Ensure the safety filter is consistently applied to backend and local reactions."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Add organic chemistry and synthesis reagents to the simulator's reagent shelf, including at least 15 distinct reagents, and update the ReagentShelf component layout to remain usable with the expanded set",
+      "acceptanceCriteria": [
+        "At least 15 distinct reagents are available on the reagent shelf",
+        "Reagents include organic compounds relevant to synthesis reactions",
+        "The shelf layout remains usable and does not overflow the viewport",
+        "Selecting two reagents that have a defined synthesis reaction displays the correct result and animation"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/ExperimentSimulator.tsx",
+          "operation": "modify",
+          "description": "Expand the reagents array passed to the ReagentShelf component to include at least 15 distinct chemical reagents. Add organic compounds commonly used in legitimate synthesis reactions such as ethanol, acetic acid, sodium acetate, glucose, benzene (with appropriate safety context), sodium bicarbonate, citric acid, methanol, acetone, ethyl acetate, sodium hydroxide, sulfuric acid (dilute), and other safe organic reagents. Ensure each reagent object has a unique name, formula, and color property. Verify that the ReagentShelf component receives the expanded reagent list and renders all items without layout overflow."
+        },
+        {
+          "path": "frontend/src/components/ReagentShelf.tsx",
+          "operation": "modify",
+          "description": "Update the ReagentShelf layout to handle a larger set of reagents (15+) without overflowing the viewport. Implement a scrollable container or a grid layout with multiple rows if the reagent count exceeds the visible area. Ensure the shelf remains accessible and usable on various screen sizes. Maintain the existing selection logic (max 2 reagents) and visual feedback (disabled state for unselected items when limit is reached). Test that the layout scales gracefully when additional reagents are added."
+        },
+        {
+          "path": "frontend/src/lib/reactions.ts",
+          "operation": "modify",
+          "description": "Add synthesis and organic chemistry reactions that use the newly added reagents from REQ-3. Ensure that selecting two of the new reagents in the simulator triggers a defined reaction with appropriate products, balanced equation, visual effect, and educational description. For example, define a synthesis reaction between ethanol and acetic acid producing ethyl acetate and water (esterification), or a reaction between sodium bicarbonate and citric acid producing carbon dioxide, water, and sodium citrate. Verify that these reactions are included in the expanded LOCAL_REACTIONS set added in REQ-1."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+
+    /* Lab theme - Light mode (still dark-leaning for lab feel) */
+    --background: 0.16 0.012 240;
+    --foreground: 0.92 0.008 240;
+    --card: 0.19 0.014 240;
+    --card-foreground: 0.92 0.008 240;
+    --popover: 0.22 0.016 240;
+    --popover-foreground: 0.92 0.008 240;
+    --primary: 0.78 0.14 195;
+    --primary-foreground: 0.12 0.01 240;
+    --secondary: 0.24 0.018 240;
+    --secondary-foreground: 0.85 0.01 240;
+    --muted: 0.24 0.018 240;
+    --muted-foreground: 0.55 0.02 240;
+    --accent: 0.24 0.018 240;
+    --accent-foreground: 0.92 0.008 240;
+    --destructive: 0.62 0.22 25;
+    --destructive-foreground: 0.98 0 0;
+    --border: 0.28 0.02 240;
+    --input: 0.28 0.02 240;
+    --ring: 0.78 0.14 195;
+    --chart-1: 0.78 0.14 195;
+    --chart-2: 0.82 0.18 145;
+    --chart-3: 0.72 0.18 290;
+    --chart-4: 0.78 0.18 55;
+    --chart-5: 0.65 0.22 25;
+    --sidebar: 0.19 0.014 240;
+    --sidebar-foreground: 0.92 0.008 240;
+    --sidebar-primary: 0.78 0.14 195;
+    --sidebar-primary-foreground: 0.12 0.01 240;
+    --sidebar-accent: 0.24 0.018 240;
+    --sidebar-accent-foreground: 0.92 0.008 240;
+    --sidebar-border: 0.28 0.02 240;
+    --sidebar-ring: 0.78 0.14 195;
+
+    /* Lab custom tokens */
+    --lab-bg: oklch(0.14 0.012 240);
+    --lab-surface: oklch(0.18 0.014 240);
+    --lab-surface2: oklch(0.22 0.016 240);
+    --lab-border: oklch(0.28 0.02 240);
+    --lab-text: oklch(0.92 0.008 240);
+    --lab-muted: oklch(0.55 0.02 240);
+    --lab-cyan: oklch(0.78 0.14 195);
+    --lab-green: oklch(0.82 0.18 145);
+    --lab-yellow: oklch(0.85 0.18 85);
+    --lab-orange: oklch(0.72 0.18 55);
+    --lab-purple: oklch(0.72 0.18 290);
+  }
+
+  .dark {
+    --background: 0.14 0.012 240;
+    --foreground: 0.92 0.008 240;
+    --card: 0.18 0.014 240;
+    --card-foreground: 0.92 0.008 240;
+    --popover: 0.22 0.016 240;
+    --popover-foreground: 0.92 0.008 240;
+    --primary: 0.78 0.14 195;
+    --primary-foreground: 0.12 0.01 240;
+    --secondary: 0.24 0.018 240;
+    --secondary-foreground: 0.85 0.01 240;
+    --muted: 0.24 0.018 240;
+    --muted-foreground: 0.55 0.02 240;
+    --accent: 0.24 0.018 240;
+    --accent-foreground: 0.92 0.008 240;
+    --destructive: 0.62 0.22 25;
+    --destructive-foreground: 0.98 0 0;
+    --border: 0.28 0.02 240;
+    --input: 0.28 0.02 240;
+    --ring: 0.78 0.14 195;
+    --chart-1: 0.78 0.14 195;
+    --chart-2: 0.82 0.18 145;
+    --chart-3: 0.72 0.18 290;
+    --chart-4: 0.78 0.18 55;
+    --chart-5: 0.65 0.22 25;
+    --sidebar: 0.18 0.014 240;
+    --sidebar-foreground: 0.92 0.008 240;
+    --sidebar-primary: 0.78 0.14 195;
+    --sidebar-primary-foreground: 0.12 0.01 240;
+    --sidebar-accent: 0.24 0.018 240;
+    --sidebar-accent-foreground: 0.92 0.008 240;
+    --sidebar-border: 0.28 0.02 240;
+    --sidebar-ring: 0.78 0.14 195;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    background-color: var(--lab-bg);
+    color: var(--lab-text);
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+  }
+
+  /* Scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--lab-bg);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--lab-border);
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--lab-muted);
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+  }
+  .font-mono {
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+  }
+}

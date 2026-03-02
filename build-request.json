@@ -1,0 +1,84 @@
+{
+  "kind": "build_request",
+  "title": "Add advanced chemistry content with synthesis, more reactions, and safety filters",
+  "projectName": "ChemLab Visual",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Expand the reaction library in both backend and frontend local reactions to include a significantly larger set of chemical reactions covering: acid-base, redox, precipitation, combustion, synthesis (combination), decomposition, single replacement, double replacement, and organic reactions. Each reaction must include reactants, products, balanced equation, type, description, and visual effect.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Make advanced chemistry include synthesis , more rxns"
+        ]
+      },
+      "acceptanceCriteria": [
+        "At least 40 distinct reactions are available in the library",
+        "Synthesis/combination reactions are included as a category",
+        "Multiple reaction types (acid-base, redox, combustion, organic, etc.) are represented",
+        "Each reaction displays a balanced equation, type badge, description, reactants, and products",
+        "Reactions are browsable and searchable in the Reaction Library page"
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Add a safety filter layer that blocks any reaction query, search, or simulation result that involves synthesis, production, or detailed instructions for: explosive compounds (e.g., TATP, RDX, nitroglycerin, TNT), chemical weapons (e.g., nerve agents, mustard gas), toxic gases weaponized for harm, or any substance classified as a weapon of mass destruction. When a user attempts to look up or simulate a blocked substance or process, display a clear refusal message indicating the content is restricted.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "no one able to misuse it in illegal activities which are harmfull to human beings",
+          "if someone try to make those chemical or exposive then it gives no result",
+          "those chemical which are used against human beings are not added in it"
+        ]
+      },
+      "acceptanceCriteria": [
+        "A blocklist of harmful/illegal chemical names and categories is defined and enforced",
+        "Searching for blocked substances in the Reaction Library returns no results and shows a safety warning message",
+        "Simulating a combination of reagents that would produce a blocked substance returns no reaction result and shows a safety warning",
+        "The safety warning message is clear and informative (e.g., 'This content is restricted for safety reasons')",
+        "Legitimate chemistry content is unaffected by the filter"
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Add organic chemistry and synthesis reactions to the simulator's reagent shelf, including common reagents used in legitimate synthesis (e.g., ethanol, acetic acid, sodium acetate, glucose, benzene, sodium bicarbonate, citric acid). Update the ReagentShelf component to accommodate the expanded set with a scrollable or paginated layout if needed.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Make advanced chemistry include synthesis , more rxns"
+        ]
+      },
+      "acceptanceCriteria": [
+        "At least 15 distinct reagents are available on the reagent shelf",
+        "Reagents include organic compounds relevant to synthesis reactions",
+        "The shelf layout remains usable and does not overflow the viewport",
+        "Selecting two reagents that have a defined synthesis reaction displays the correct result and animation"
+      ]
+    }
+  ],
+  "constraints": [
+    "Do not include any reaction, reagent, or synthesis pathway for explosive compounds, chemical weapons, nerve agents, or any substance used as a weapon of mass destruction",
+    "All Motoko logic must remain in the single backend/main.mo actor file",
+    "Do not modify files under frontend/src/hooks/ or frontend/src/components/ui"
+  ],
+  "nonGoals": [
+    "Real laboratory simulation or professional chemistry tool",
+    "User-submitted reactions or crowdsourced content",
+    "Authentication or user account management",
+    "External chemistry database API integration"
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "Advanced chemistry app with synthesis and reaction features, with safety restrictions to prevent misuse for harmful/illegal activities involving dangerous chemicals or explosives.",
+  "architectural_notes": [
+    "Block or return no results for queries related to chemicals/explosives that could harm human beings"
+  ],
+  "known_issues": [],
+  "isFixRequest": false,
+  "existing_features": [
+    {
+      "id": "feature-expand-the-reaction-library-in-both-backend-and-frontend-local-reactions-to-include-a-significantly-larger-set-of-chemical-reactions-covering-acid-base-redox-precipitation-combustion-synthesis-combination-decomposition-single-replacement-double-replacement-and-organic-reactions-each-reaction-must-include-reactants-products-balanced-equation-type-description-and-visual-effect",
+      "title": "Expand the reaction library in both backend and frontend local reactions to include a significantly larger set of chemical reactions covering: acid-base, redox, precipitation, combustion, synthesis (combination), decomposition, single replacement, double replacement, and organic reactions. Each reaction must include reactants, products, balanced equation, type, description, and visual effect.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-safety-filter-layer-that-blocks-any-reaction-query-search-or-simulation-result-that-involves-synthesis-production-or-detailed-instructions-for-explosive-compounds-e-g-tatp-rdx-nitroglycerin-tnt-chemical-weapons-e-g-nerve-agents-mustard-gas-toxic-gases-weaponized-for-harm-or-any-substance-classified-as-a-weapon-of-mass-destruction-when-a-user-attempts-to-look-up-or-simulate-a-blocked-substance-or-process-display-a-clear-refusal-message-indicating-the-content-is-restricted",
+      "title": "Add a safety filter layer that blocks any reaction query, search, or simulation result that involves synthesis, production, or detailed instructions for: explosive compounds (e.g., TATP, RDX, nitroglycerin, TNT), chemical weapons (e.g., nerve agents, mustard gas), toxic gases weaponized for harm, or any substance classified as a weapon of mass destruction. When a user attempts to look up or simulate a blocked substance or process, display a clear refusal message indicating the content is restricted.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-organic-chemistry-and-synthesis-reactions-to-the-simulator-s-reagent-shelf-including-common-reagents-used-in-legitimate-synthesis-e-g-ethanol-acetic-acid-sodium-acetate-glucose-benzene-sodium-bicarbonate-citric-acid-update-the-reagentshelf-component-to-accommodate-the-expanded-set-with-a-scrollable-or-paginated-layout-if-needed",
+      "title": "Add organic chemistry and synthesis reactions to the simulator's reagent shelf, including common reagents used in legitimate synthesis (e.g., ethanol, acetic acid, sodium acetate, glucose, benzene, sodium bicarbonate, citric acid). Update the ReagentShelf component to accommodate the expanded set with a scrollable or paginated layout if needed.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Advanced chemistry features including synthesis and more reactions",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Safety restrictions to block harmful/illegal chemical or explosive synthesis results",
+      "reqIds": [],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Advanced Chemistry App",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

@@ -1,0 +1,49 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-03-02T03:07:01.582Z",
+  "summary": "The diff implements most requirements well. REQ-1 (40+ reactions, multiple types, frontend library) is satisfied. REQ-2 (safety filter) is implemented on the frontend and partially on the backend. REQ-3 (expanded reagent shelf with organic compounds, scrollable layout) is satisfied. One notable gap is that the backend reaction library in main.mo contains only 5 reactions rather than a significantly expanded set matching the 40+ in the frontend, and the backend safety filter does not perform substring/content matching against individual reaction content. The constraint that all Motoko logic must remain in the single backend/main.mo actor file is also slightly violated by the addition of backend/migration.mo.",
+  "missing_requirements": [
+    {
+      "id": "REQ-1",
+      "requirement": "Expand the reaction library in the BACKEND to include a significantly larger set of chemical reactions (at least 40 distinct reactions covering all required types).",
+      "reason": "The backend/main.mo only defines 5 reactions in its safeReactions map (Water Formation, Sodium Chloride Formation, Acid-Base Neutralization, Complete Combustion, Precipitation Reaction). The 40+ reactions are only in the frontend local library (frontend/src/lib/reactions.ts), not in the backend.",
+      "evidence": [
+        "backend/main.mo",
+        "frontend/src/lib/reactions.ts"
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "requirement": "The backend safety filter should block queries for individual blocked substance names, and the searchReactions function should apply safety filtering.",
+      "reason": "backend/main.mo's blockedReactions map only has two high-level category keys ('Explosives', 'Chemical Weapons'). The searchReactions function returns results without any safety check. An exact name lookup for 'sarin' or 'TATP' would return null rather than blocked, and search is completely unfiltered on the backend.",
+      "evidence": [
+        "backend/main.mo"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "A backend/migration.mo module was added as a separate Motoko file.",
+      "reason": "The build request constraint explicitly states 'All Motoko logic must remain in the single backend/main.mo actor file.' Adding a separate migration.mo file violates this constraint and was not requested.",
+      "evidence": [
+        "backend/migration.mo"
+      ]
+    }
+  ],
+  "confidence": 0.82,
+  "changed_files": [
+    "backend/main.mo",
+    "backend/migration.mo",
+    "frontend-file-summaries.txt",
+    "frontend/src/components/EducationalPanel.tsx",
+    "frontend/src/components/ReactionCard.tsx",
+    "frontend/src/components/ReagentShelf.tsx",
+    "frontend/src/hooks/useQueries.ts",
+    "frontend/src/lib/reactions.ts",
+    "frontend/src/lib/safetyFilter.ts",
+    "frontend/src/pages/ExperimentSimulator.tsx",
+    "frontend/src/pages/ReactionLibrary.tsx",
+    "project_state.json"
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-expand-the-reaction-library-in-both-backend-and-frontend-local-reactions-to-include-a-significantly-larger-set-of-chemical-reactions-covering-acid-base-redox-precipitation-combustion-synthesis-combination-decomposition-single-replacement-double-replacement-and-organic-reactions-each-reaction-must-include-reactants-products-balanced-equation-type-description-and-visual-effect",
+      "featureTitle": "Expand the reaction library in both backend and frontend local reactions to include a significantly larger set of chemical reactions covering: acid-base, redox, precipitation, combustion, synthesis (combination), decomposition, single replacement, double replacement, and organic reactions. Each reaction must include reactants, products, balanced equation, type, description, and visual effect.",
+      "files": [
+        "frontend/src/components/EducationalPanel.tsx",
+        "frontend/src/components/ReactionCard.tsx",
+        "frontend/src/lib/reactions.ts",
+        "frontend/src/pages/ReactionLibrary.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-1"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-a-safety-filter-layer-that-blocks-any-reaction-query-search-or-simulation-result-that-involves-synthesis-production-or-detailed-instructions-for-explosive-compounds-e-g-tatp-rdx-nitroglycerin-tnt-chemical-weapons-e-g-nerve-agents-mustard-gas-toxic-gases-weaponized-for-harm-or-any-substance-classified-as-a-weapon-of-mass-destruction-when-a-user-attempts-to-look-up-or-simulate-a-blocked-substance-or-process-display-a-clear-refusal-message-indicating-the-content-is-restricted",
+      "featureTitle": "Add a safety filter layer that blocks any reaction query, search, or simulation result that involves synthesis, production, or detailed instructions for: explosive compounds (e.g., TATP, RDX, nitroglycerin, TNT), chemical weapons (e.g., nerve agents, mustard gas), toxic gases weaponized for harm, or any substance classified as a weapon of mass destruction. When a user attempts to look up or simulate a blocked substance or process, display a clear refusal message indicating the content is restricted.",
+      "files": [
+        "frontend/src/hooks/useQueries.ts",
+        "frontend/src/lib/safetyFilter.ts",
+        "frontend/src/pages/ExperimentSimulator.tsx",
+        "frontend/src/pages/ReactionLibrary.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-2"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-organic-chemistry-and-synthesis-reactions-to-the-simulator-s-reagent-shelf-including-common-reagents-used-in-legitimate-synthesis-e-g-ethanol-acetic-acid-sodium-acetate-glucose-benzene-sodium-bicarbonate-citric-acid-update-the-reagentshelf-component-to-accommodate-the-expanded-set-with-a-scrollable-or-paginated-layout-if-needed",
+      "featureTitle": "Add organic chemistry and synthesis reactions to the simulator's reagent shelf, including common reagents used in legitimate synthesis (e.g., ethanol, acetic acid, sodium acetate, glucose, benzene, sodium bicarbonate, citric acid). Update the ReagentShelf component to accommodate the expanded set with a scrollable or paginated layout if needed.",
+      "files": [
+        "frontend/src/components/ReagentShelf.tsx",
+        "frontend/src/lib/reactions.ts",
+        "frontend/src/pages/ExperimentSimulator.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-3"
+      ],
+      "confidence": "high"
+    }
+  ]
+}
